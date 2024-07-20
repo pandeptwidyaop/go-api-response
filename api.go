@@ -1,18 +1,18 @@
 package api
 
 type ResponseBag struct {
-	HttpStatus   int           `json:"status"`
-	HttpData     []interface{} `json:"data"`
-	HttpMessages []interface{} `json:"messages"`
-	HttpMeta     []interface{} `json:"meta"`
+	HttpStatus  int         `json:"status"`
+	HttpData    interface{} `json:"data"`
+	HttpMessage interface{} `json:"message"`
+	HttpMeta    interface{} `json:"meta"`
 }
 
 func New() *ResponseBag {
 	return &ResponseBag{
-		HttpStatus:   200,
-		HttpData:     nil,
-		HttpMessages: nil,
-		HttpMeta:     nil,
+		HttpStatus:  200,
+		HttpData:    nil,
+		HttpMessage: nil,
+		HttpMeta:    nil,
 	}
 }
 
@@ -21,22 +21,17 @@ func (r *ResponseBag) Status(status int) *ResponseBag {
 	return r
 }
 
-func (r *ResponseBag) Data(data []interface{}) *ResponseBag {
+func (r *ResponseBag) Data(data interface{}) *ResponseBag {
 	r.HttpData = data
 	return r
 }
 
 func (r *ResponseBag) Message(message interface{}) *ResponseBag {
-	r.HttpMessages = append(r.HttpMessages, message)
+	r.HttpMessage = message
 	return r
 }
 
-func (r *ResponseBag) Messages(messages []interface{}) *ResponseBag {
-	r.HttpMessages = messages
-	return r
-}
-
-func (r *ResponseBag) Meta(meta []interface{}) *ResponseBag {
+func (r *ResponseBag) Meta(meta interface{}) *ResponseBag {
 	r.HttpMeta = meta
 	return r
 }

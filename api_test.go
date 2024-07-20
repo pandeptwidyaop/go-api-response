@@ -16,7 +16,7 @@ func Test_CreateResponse(t *testing.T) {
 	j, err := json.Marshal(response)
 
 	assert.Nil(t, err)
-	assert.Equal(t, `{"status":200,"data":null,"messages":null,"meta":null}`, string(j))
+	assert.Equal(t, `{"status":200,"data":null,"message":null,"meta":null}`, string(j))
 }
 
 func Test_FillMessages(t *testing.T) {
@@ -28,11 +28,11 @@ func Test_FillMessages(t *testing.T) {
 		},
 	})
 
-	r := api.New().Messages(msg)
+	r := api.New().Message(msg)
 
 	j, err := json.Marshal(r)
 
 	assert.Nil(t, err)
 
-	assert.Equal(t, `{"status":200,"data":null,"messages":[{"errors":{"email":["Not Valid","Is Required"]}}],"meta":null}`, string(j))
+	assert.Equal(t, `{"status":200,"data":null,"message":[{"errors":{"email":["Not Valid","Is Required"]}}],"meta":null}`, string(j))
 }
